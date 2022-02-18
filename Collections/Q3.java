@@ -47,8 +47,12 @@ public class Q3{
             }
         }
         int getMin(){
-            Arrays.sort(data);
-            int min = data[0];
+            int min =Integer.MAX_VALUE;
+            for(int i =0; i < data.length ; i++){
+                if(data[i] < min){
+                    min = data[i];
+                }
+            }
             return min;
         }
     }
