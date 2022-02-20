@@ -1,28 +1,32 @@
 package Collections;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 class Employee{
     String name;
     int age;
     String designation;
     int salary;
-    public Employee(String name, int age, String designation,int salary){
+    public Employee(String name, int age, String designation){
         this.name = name;
         this.age = age;
         this.designation = designation;
-        this.salary = salary;
     }
 }
 public class Q4 {
     public static void main(String[] args) {
-        Employee e1 = new Employee("Ayush", 23, "JVM", 30000);
-        Employee e2 = new Employee("Piyush", 23, "JVM", 40000);
-        Employee e3 = new Employee("Ram", 23, "JVM", 50000);
-        HashMap<String, Integer> hs = new HashMap<>();
-        hs.put(e1.name, e1.salary);
-        hs.put(e2.name, e2.salary);
-        hs.put(e3.name, e3.salary);
-        System.out.println(hs);
+        Scanner sc = new Scanner(System.in);
+        HashMap<Employee, Double> hs = new HashMap<>();
+        for (int i = 0; i < 1; i++){
+            System.out.println("Enter name, age, designation");
+            Employee e = new Employee(sc.next(), sc.nextInt(), sc.next());
+            System.out.println("Enter Salary");
+            hs.put(e, sc.nextDouble());
+        }
+        for(Map.Entry<Employee, Double> entry: hs.entrySet()){
+            System.out.println(entry.getKey().name + " and Salary is " + entry.getValue());
+        }
     }
 }
