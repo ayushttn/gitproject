@@ -5,9 +5,7 @@ interface myinterface{
     }
 }
 class A implements myinterface{
-    public void sayHi(){
-        System.out.println("HI Everyone");
-    }
+
 }
 class B implements myinterface{
     @Override
