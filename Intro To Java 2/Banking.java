@@ -1,9 +1,21 @@
 package IntroToJava2;
 import java.io.*;
+import java.lang.annotation.ElementType;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-enum acc_type{SAVINGS, CURRENT};
+enum acc_type{
+    SAVINGS("Savings"),
+    CURRENT("Current");
+    public final String value;
+    private acc_type(String value){
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+};
 abstract class Bank{
     int Balance = 0;
     abstract void printDetails();
@@ -14,12 +26,12 @@ abstract class Bank{
         return dtf.format(now);
     }
     public boolean Withdrawamount(int amt) throws Exception {
-        if(Balance - amt > 0){
-            return true;
-        }
-        else {
-            throw new Exception("InsufficientBalanceException");
-        }
+            if((Balance - amt > 0)){
+                return true;
+            }
+            else {
+                return false;
+            }
     }
 }
 class SBI extends Bank{
@@ -93,10 +105,10 @@ public class Banking {
                     String Acc_ty = "";
                     if (ac_ty == 1) {
                         acc_type acct = acc_type.CURRENT;
-                        Acc_ty = "CURRENT";
+                        Acc_ty = acc_type.CURRENT.getValue();
                     } else if (ac_ty == 2) {
                         acc_type acct = acc_type.SAVINGS;
-                        Acc_ty = "Savings";
+                        Acc_ty = acc_type.SAVINGS.getValue();
                     }
                     System.out.println("1.Deposit \t2.Withdraw");
                     int oper = sc.nextInt();
@@ -120,11 +132,16 @@ public class Banking {
                     BufferedWriter br = new BufferedWriter(new FileWriter("SBI",true));
                     br.append("Date and Time:" + sbi.getDateandTime() + "\n");
                     br.append("Account Number:" + Long.toString(acc_no) + "\n");
-                    br.append("Account Type:" + Acc_ty);
+                    br.append("Account Type:" + Acc_ty + "\n");
                     br.append("Amount to be Deposited or Withdraw" + Integer.toString(amount) + "\n");
                     br.append("Amount before Transaction" +Integer.toString(sbi.Balance) + "\n");
                     br.append("Amount after Transaction is:" + Integer.toString(amt_af_op) + "\n");
-                    br.append("Transaction Status:" + Status + "\n\n\n");
+                    br.append("Transaction Status:" + Status + "\n");
+                    if(Status.equals("InsufficientBalance")){
+                        br.append("Amount is not sufficient for this transaction\n");
+                        br.close();
+                        throw new Exception("InsufficientBalanceException");
+                    }
                     br.close();
                     break;
                 }
@@ -136,10 +153,10 @@ public class Banking {
                     String Acc_ty = "";
                     if (ac_ty == 1) {
                         acc_type acct = acc_type.CURRENT;
-                        Acc_ty = "CURRENT";
+                        Acc_ty = acc_type.CURRENT.getValue();
                     } else if (ac_ty == 2) {
                         acc_type acct = acc_type.SAVINGS;
-                        Acc_ty = "Savings";
+                        Acc_ty = acc_type.SAVINGS.getValue();
                     }
                     System.out.println("1.Deposit \t2.Withdraw");
                     int oper = sc.nextInt();
@@ -163,11 +180,16 @@ public class Banking {
                     BufferedWriter br = new BufferedWriter(new FileWriter("BOI", true));
                     br.append("Date and Time:" + boi.getDateandTime() + "\n");
                     br.append("Account Number:" + Long.toString(acc_no) + "\n");
-                    br.append("Account Type:" + Acc_ty);
+                    br.append("Account Type:" + Acc_ty + "\n");
                     br.append("Amount to be Deposited or Withdraw" + Integer.toString(amount) + "\n");
                     br.append("Amount before Transaction" +Integer.toString(boi.Balance) + "\n");
                     br.append("Amount after Transaction is:" + Integer.toString(amt_af_op) + "\n");
-                    br.append("Transaction Status:" + Status + "\n\n\n");
+                    br.append("Transaction Status:" + Status + "\n");
+                    if(Status.equals("InsufficientBalance")){
+                        br.append("Amount is not sufficient for this transaction\n");
+                        br.close();
+                        throw new Exception("InsufficientBalanceException");
+                    }
                     br.close();
                     break;
                 }
@@ -179,10 +201,10 @@ public class Banking {
                     String Acc_ty = "";
                     if (ac_ty == 1) {
                         acc_type acct = acc_type.CURRENT;
-                        Acc_ty = "CURRENT";
+                        Acc_ty = acc_type.CURRENT.getValue();
                     } else if (ac_ty == 2) {
                         acc_type acct = acc_type.SAVINGS;
-                        Acc_ty = "Savings";
+                        Acc_ty = acc_type.SAVINGS.getValue();
                     }
                     System.out.println("1.Deposit \t2.Withdraw");
                     int oper = sc.nextInt();
@@ -206,11 +228,16 @@ public class Banking {
                     BufferedWriter br = new BufferedWriter(new FileWriter("ICICI",true));
                     br.append("Date and Time:" + icici.getDateandTime() + "\n");
                     br.append("Account Number:" + Long.toString(acc_no) + "\n");
-                    br.append("Account Type:" + Acc_ty);
+                    br.append("Account Type:" + Acc_ty +"\n");
                     br.append("Amount to be Deposited or Withdraw" + Integer.toString(amount) + "\n");
                     br.append("Amount before Transaction" +Integer.toString(icici.Balance) + "\n");
                     br.append("Amount after Transaction is:" + Integer.toString(amt_af_op) + "\n");
-                    br.append("Transaction Status:" + Status + "\n\n\n");
+                    br.append("Transaction Status:" + Status + "\n");
+                    if(Status.equals("InsufficientBalance")){
+                        br.append("Amount is not sufficient for this transaction\n");
+                        br.close();
+                        throw new Exception("InsufficientBalanceException");
+                    }
                     br.close();
                     break;
                 }
