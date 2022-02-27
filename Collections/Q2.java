@@ -10,13 +10,13 @@ class Emp{
         this.Name=Name;
     }
 }
-class NameComparator implements Comparator{
-    public int compare(Object o1, Object o2){
-        Emp e1 = (Emp)o1;
-        Emp e2 = (Emp) o2;
-        return e1.Name.compareTo(e2.Name);
-    }
-}
+//class NameComparator implements Comparator{
+//    public int compare(Object o1, Object o2){
+//        Emp e1 = (Emp)o1;
+//        Emp e2 = (Emp) o2;
+//        return e1.Name.compareTo(e2.Name);
+//    }
+//}
 class SalaryComparator implements Comparator{
     public int compare(Object o1, Object o2){
         Emp e1 = (Emp)o1;
@@ -35,17 +35,34 @@ class SalaryComparator implements Comparator{
 public class Q2 {
     public static void main(String[] args) {
         ArrayList al = new ArrayList();
-        al.add(new Emp(29,60000,"Ayush Sharma"));
-        al.add(new Emp(23,40000,"Ayush Tyagi"));
-        al.add(new Emp(25,20000,"Ram Verma"));
+//        al.add(new Emp(29,60000,"Ayush Sharma"));
+//        al.add(new Emp(23,40000,"Ayush Tyagi"));
+//        al.add(new Emp(25,20000,"Ram Verma"));
 
+        Emp e2 = new Emp(29,60000,"Ayush Sharma");
+        Emp e1 = new Emp(23,40000,"Ayush Tyagi");
+        Emp e3 = new Emp(25,20000,"Ram Verma");
+        al.add(e1);
+        al.add(e2);
+        al.add(e3);
+
+        //Default Sorting Method
         System.out.println("Sorting by name");
-        Collections.sort(al, new NameComparator());
-        Iterator itr = al.iterator();
-        while (itr.hasNext()){
-            Emp e =(Emp)itr.next();
-            System.out.println(e.age + " " + e.Name + " " + e.salary);
+        Set<String> treeset = new TreeSet<>();
+        treeset.add(e1.Name);
+        treeset.add(e2.Name);
+        treeset.add(e3.Name);
+
+        for (String element: treeset){
+            System.out.println(element);
         }
+        //Using Comparator Method
+//        Collections.sort(al, new NameComparator());
+//        Iterator itr = al.iterator();
+//        while (itr.hasNext()){
+//            Emp e =(Emp)itr.next();
+//            System.out.println(e.age + " " + e.Name + " " + e.salary);
+//        }
         System.out.println("Sorting by Salary");
         Collections.sort(al, new SalaryComparator());
         Iterator itr2 = al.iterator();
