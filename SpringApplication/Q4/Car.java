@@ -1,14 +1,15 @@
 package com.Ayush.SpringAssignment;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Car {
 
+    @Autowired
     private Honk honk;
 
-    @Autowired
     public Car(Honk honk) {
         this.honk = honk;
     }

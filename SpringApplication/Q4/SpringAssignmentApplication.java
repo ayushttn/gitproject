@@ -11,5 +11,9 @@ public class SpringAssignmentApplication {
 		ApplicationContext context = SpringApplication.run(SpringAssignmentApplication.class);
 		Car car = context.getBean(Car.class);
 		car.H();
+		String [] beanName = context.getBeanDefinitionNames();
+		for (String bean: beanName){
+			System.out.println(bean);
+		}
 	}
 }
