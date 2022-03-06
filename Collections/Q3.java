@@ -5,10 +5,12 @@ public class Q3{
     public static class SpecialStack{
         int[] data;
         int tos;
+        Stack<Integer> minim = new Stack<>();
 
         public SpecialStack(int cap){
             data = new int[cap];
             tos = -1;
+            minim.push(Integer.MAX_VALUE);
         }
         void push(int value){
             if(tos == data.length - 1){
@@ -17,6 +19,9 @@ public class Q3{
             else{
                 tos++;
                 data[tos] = value;
+                if(value < minim.peek()){
+                    minim.push(value);
+                }
             }
         }
         int pop(){
@@ -27,6 +32,9 @@ public class Q3{
             else{
                 int value = data[tos];
                 tos--;
+                if(value == minim.peek()){
+                    minim.pop();
+                }
                 return value;
             }
         }
@@ -47,12 +55,7 @@ public class Q3{
             }
         }
         int getMin(){
-            int min =Integer.MAX_VALUE;
-            for(int i =0; i < data.length ; i++){
-                if(data[i] < min){
-                    min = data[i];
-                }
-            }
+            int min = minim.peek();
             return min;
         }
     }
