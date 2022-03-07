@@ -5,12 +5,12 @@ public class Q3{
     public static class SpecialStack{
         int[] data;
         int tos;
-        Stack<Integer> minim = new Stack<>();
+        ArrayList<Integer> al = new ArrayList<>();
 
         public SpecialStack(int cap){
             data = new int[cap];
             tos = -1;
-            minim.push(Integer.MAX_VALUE);
+            al.add(Integer.MAX_VALUE);
         }
         void push(int value){
             if(tos == data.length - 1){
@@ -19,8 +19,8 @@ public class Q3{
             else{
                 tos++;
                 data[tos] = value;
-                if(value < minim.peek()){
-                    minim.push(value);
+                if(value < al.get(al.size() - 1)){
+                    al.add(value);
                 }
             }
         }
@@ -32,8 +32,8 @@ public class Q3{
             else{
                 int value = data[tos];
                 tos--;
-                if(value == minim.peek()){
-                    minim.pop();
+                if(value == al.get(al.size() - 1)){
+                    al.remove(al.size() - 1);
                 }
                 return value;
             }
@@ -55,8 +55,14 @@ public class Q3{
             }
         }
         int getMin(){
-            int min = minim.peek();
-            return min;
+            if(al.size() == 1){
+                System.out.println("Stack is Empty");
+                return -1;
+            }
+            else {
+                int min = al.get(al.size() - 1);
+                return min;
+            }
         }
     }
     public static void main(String[] args) throws IOException {
