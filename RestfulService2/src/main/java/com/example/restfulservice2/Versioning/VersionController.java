@@ -20,7 +20,7 @@ public class VersionController {
 
     @GetMapping(value="/person/param",params="version=2")
     public PersonV2 paramV2(){
-        return new PersonV2(new Name("somesh" , "kumar"));
+        return new PersonV2(new Name("Ayush" , "Tyagi"));
     }
 
     @GetMapping(value="/person/header",headers="X-API-VERSION=1")
